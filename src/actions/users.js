@@ -1,5 +1,6 @@
 import { FETCH_USER } from "./types";
 import { authRef } from "../config/firebase";
+import firebase from "firebase";
 
 // Fetch User Login Data
 export const fetchUser = () => async dispatch => {
@@ -22,16 +23,24 @@ export const userLogout = () => async dispatch => {
 //User Login
 export const userLogin = (email, password) => async dispatch => {
   console.log("Login Function");
+  //Session [Auth ends when page is closed]
   authRef
-    .signInWithEmailAndPassword(email, password)
-    .then(user => {
-      console.log("Signed In");
-      dispatch({
-        type: FETCH_USER,
-        payload: user
-      });
+    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => {
+      return authRef
+        .signInWithEmailAndPassword(email, password)
+        .then(user => {
+          console.log("Signed In");
+          dispatch({
+            type: FETCH_USER,
+            payload: user
+          });
+        })
+        .catch(error => {
+          console.log(error.code + " " + error.message);
+        });
     })
     .catch(error => {
-      console.log(error.code + " " + error.message);
+      console.log(error.codetar);
     });
 };

@@ -3,6 +3,10 @@ import * as actions from "../actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+import Grids from "./Grids";
+import HeroSection from "./Hero";
+import NavbarSection from "./Navbar";
+
 class Dashboard extends Component {
   componentWillMount() {
     const { fetchUser } = this.props;
@@ -19,7 +23,13 @@ class Dashboard extends Component {
 
   render() {
     if (this.props.auth.user === null) return <Redirect to="/login" />;
-    return <div>Hey</div>;
+    return (
+      <div>
+        <NavbarSection />
+        <HeroSection />
+        <Grids />
+      </div>
+    );
   }
 }
 
