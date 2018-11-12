@@ -25,6 +25,11 @@ export default class NavbarSection extends Component {
     });
   }
 
+  handleLogout = () => {
+    const { userLogout } = this.props.props;
+    userLogout();
+  };
+
   render() {
     return (
       <Navbar color="light" light expand="md">
@@ -38,9 +43,11 @@ export default class NavbarSection extends Component {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                Portal Login
-              </NavLink>
+              {this.props.props.auth.user !== null ? (
+                <NavLink onClick={this.handleLogout}>Logout</NavLink>
+              ) : (
+                <NavLink onClick={this.props.modal}>Login</NavLink>
+              )}
             </NavItem>
           </Nav>
         </Collapse>

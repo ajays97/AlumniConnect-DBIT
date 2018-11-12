@@ -6,27 +6,42 @@ import { Redirect } from "react-router-dom";
 import Grids from "./Grids";
 import HeroSection from "./Hero";
 import NavbarSection from "./Navbar";
+import Modal from "./Modal";
 
-class Dashboard extends Component {
+class HomePage extends Component {
+  state = {
+    modalOpen: false
+  };
+
   componentWillMount() {
     const { fetchUser } = this.props;
     console.log(this.props.auth);
     fetchUser();
   }
+
   componentWillReceiveProps(nextProps) {
     console.log(nextProps);
   }
+
   handleLogout = () => {
     const { userLogout } = this.props;
     userLogout();
   };
 
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen
+    });
+  };
+
   render() {
-    if (this.props.auth.user === null) return <Redirect to="/login" />;
     return (
       <div>
-        <NavbarSection />
-        <HeroSection />
+        <NavbarSection modal={this.toggleModal} props={this.props} />
+        {this.state.modalOpen && (
+          <Modal toggleModal={this.toggleModal} state={this.state} />
+        )}
+        <HeroSection props={this.props} toggleModal={this.toggleModal} />
         <Grids />
       </div>
     );
@@ -43,4 +58,4 @@ const mapStateToProps = ({ data, auth }, ownProps) => {
 export default connect(
   mapStateToProps,
   actions
-)(Dashboard);
+)(HomePage);
