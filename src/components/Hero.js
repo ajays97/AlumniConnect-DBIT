@@ -32,7 +32,7 @@ class HeroSection extends Component {
     if (this.props.props.auth.user !== null) {
       this.toggle();
       axios
-        .get("http://localhost:80/send-wishes")
+        .get("http://localhost:5000/send-wishes")
         .then(response => {
           this.toggle();
           console.log(response);
