@@ -1,8 +1,8 @@
 export const FirebaseConfig = {
-  apiKey: "AIzaSyC-_XisTTXxbzXh9Xh8NvTBNqllbMl0pyo",
-  authDomain: "book-arcade.firebaseapp.com",
-  databaseURL: "https://book-arcade.firebaseio.com",
-  projectId: "book-arcade",
-  storageBucket: "book-arcade.appspot.com",
-  messagingSenderId: "151036927760"
+  apiKey: "AIzaSyDsN4qp-uKkme7P820IO99zon7iWS8O_CU",
+  authDomain: "alumni-db-94ff2.firebaseapp.com",
+  databaseURL: "https://alumni-db-94ff2.firebaseio.com",
+  projectId: "alumni-db-94ff2",
+  storageBucket: "alumni-db-94ff2.appspot.com",
+  messagingSenderId: "394254794771"
 };
