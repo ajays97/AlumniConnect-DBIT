@@ -10,7 +10,8 @@ class HeroSection extends Component {
     super(props);
     this.state = {
       isLoading: false,
-      isSuccessful: false
+      isSuccessful: false,
+      usn: ['none']
     };
     this.handleClick = this.handleClick.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -35,7 +36,10 @@ class HeroSection extends Component {
         .get("http://localhost:5000/send-wishes")
         .then(response => {
           this.toggle();
-          console.log(response);
+          console.log(response.data.usn);
+          this.setState({
+            usn: response.data.usn
+          })
           this.handleSuccess();
           setTimeout(() => {
             this.handleSuccess();
@@ -76,11 +80,12 @@ class HeroSection extends Component {
               </span>
             </div>
           )}
-          {this.state.isSuccessful && (
-            <Alert className="mt-2 hero_alert" color="success">
-              Wishes sent successfully...
-            </Alert>
-          )}
+          {this.state.isSuccessful && this.state.usn.map(usn => 
+            <Alert key={usn} className="mt-2 hero_alert" color="success">
+            Wishes sent successfully to {usn}
+          </Alert>
+          )
+          }
         </Hero>
       </Provider>
     );
