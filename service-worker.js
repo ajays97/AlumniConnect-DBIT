@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/AlumniConnect-DBIT/precache-manifest.d634aa8f37d1ca6e47688e752c26ff66.js"
+  "/AlumniConnect-DBIT/precache-manifest.628186c823dcb4f84e1b19d888690676.js"
 );
 
 workbox.clientsClaim();
