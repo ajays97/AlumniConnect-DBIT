@@ -33,7 +33,7 @@ class HeroSection extends Component {
     if (this.props.props.auth.user !== null) {
       this.toggle();
       axios
-        .get("http://localhost:5000/send-wishes")
+        .get("https://alumni-db-94ff2.appspot.com/send-wishes")
         .then(response => {
           this.toggle();
           console.log(response.data.usn);
